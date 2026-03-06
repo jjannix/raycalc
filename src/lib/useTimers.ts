@@ -1,30 +1,14 @@
 import { getPreferenceValues, showToast, Toast } from "@raycast/api";
-import { exec } from "child_process";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Timer } from "./types";
+import { playSound } from "./sounds";
 import { getTimers, setTimers } from "./storage";
 
 const UPDATE_INTERVAL = 1000; // 1 second for countdown display
 
-const SOUND_PATTERNS: Record<string, string> = {
-  chime:
-    "[Console]::Beep(523,150); [Console]::Beep(659,150); [Console]::Beep(784,150); [Console]::Beep(1047,300)",
-  gentle:
-    "[Console]::Beep(392,300); Start-Sleep -m 80; [Console]::Beep(523,400)",
-  melody:
-    "[Console]::Beep(659,200); [Console]::Beep(587,200); [Console]::Beep(659,200); [Console]::Beep(784,400)",
-  bell: "[Console]::Beep(1047,80); [Console]::Beep(784,400)",
-  celebration:
-    "[Console]::Beep(523,120); [Console]::Beep(659,120); [Console]::Beep(784,120); [Console]::Beep(1047,120); [Console]::Beep(784,120); [Console]::Beep(1047,350)",
-  pulse:
-    "[Console]::Beep(600,100); Start-Sleep -m 80; [Console]::Beep(600,100); Start-Sleep -m 80; [Console]::Beep(800,250)",
-};
-
 function playTimerSound() {
   const { timerSound } = getPreferenceValues<{ timerSound: string }>();
-  if (timerSound === "none") return;
-  const pattern = SOUND_PATTERNS[timerSound];
-  if (pattern) exec(`powershell -c "${pattern}"`);
+  playSound(timerSound);
 }
 
 interface UseTimersReturn {
