@@ -29,6 +29,12 @@
       "title": "Manage Timers",
       "description": "View and manage active and completed timers",
       "mode": "view"
+    },
+    {
+      "name": "world-clock",
+      "title": "World Clock",
+      "description": "View current time across multiple time zones",
+      "mode": "view"
     }
   ],
   "dependencies": {
@@ -57,6 +63,7 @@
     "macOS"
   ],
   "categories": [
-    "Data"
+    "Productivity",
+    "System"
   ]
 }
