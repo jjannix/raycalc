@@ -7,16 +7,17 @@ import { getTimers, setTimers } from "./storage";
 const UPDATE_INTERVAL = 1000; // 1 second for countdown display
 
 const SOUND_PATTERNS: Record<string, string> = {
-  triple:
-    "[Console]::Beep(800,200); [Console]::Beep(800,200); [Console]::Beep(800,200)",
-  ascending:
-    "[Console]::Beep(400,200); [Console]::Beep(600,200); [Console]::Beep(800,300)",
-  descending:
-    "[Console]::Beep(800,200); [Console]::Beep(600,200); [Console]::Beep(400,300)",
-  high: "[Console]::Beep(1200,400)",
-  low: "[Console]::Beep(300,600)",
-  alert:
-    "[Console]::Beep(900,150); [Console]::Beep(0,100); [Console]::Beep(900,150); [Console]::Beep(0,100); [Console]::Beep(900,150)",
+  chime:
+    "[Console]::Beep(523,150); [Console]::Beep(659,150); [Console]::Beep(784,150); [Console]::Beep(1047,300)",
+  gentle:
+    "[Console]::Beep(392,300); Start-Sleep -m 80; [Console]::Beep(523,400)",
+  melody:
+    "[Console]::Beep(659,200); [Console]::Beep(587,200); [Console]::Beep(659,200); [Console]::Beep(784,400)",
+  bell: "[Console]::Beep(1047,80); [Console]::Beep(784,400)",
+  celebration:
+    "[Console]::Beep(523,120); [Console]::Beep(659,120); [Console]::Beep(784,120); [Console]::Beep(1047,120); [Console]::Beep(784,120); [Console]::Beep(1047,350)",
+  pulse:
+    "[Console]::Beep(600,100); Start-Sleep -m 80; [Console]::Beep(600,100); Start-Sleep -m 80; [Console]::Beep(800,250)",
 };
 
 function playTimerSound() {
