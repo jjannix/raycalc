@@ -1,4 +1,4 @@
-import { showToast, Toast } from "@raycast/api";
+import { getPreferenceValues, showToast, Toast } from "@raycast/api";
 import { exec } from "child_process";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Timer } from "./types";
@@ -7,7 +7,9 @@ import { getTimers, setTimers } from "./storage";
 const UPDATE_INTERVAL = 1000; // 1 second for countdown display
 
 function playTimerSound() {
-  exec('powershell -c "[System.Media.SystemSounds]::Asterisk.Play()"');
+  const { timerSound } = getPreferenceValues<{ timerSound: string }>();
+  if (timerSound === "none") return;
+  exec(`powershell -c "[System.Media.SystemSounds]::${timerSound}.Play()"`);
 }
 
 interface UseTimersReturn {

@@ -59,5 +59,41 @@
   "categories": [
     "Productivity",
     "System"
+  ],
+  "preferences": [
+    {
+      "name": "timerSound",
+      "title": "Timer Sound",
+      "description": "Sound to play when a timer finishes",
+      "type": "dropdown",
+      "required": false,
+      "default": "Asterisk",
+      "data": [
+        {
+          "title": "Asterisk",
+          "value": "Asterisk"
+        },
+        {
+          "title": "Beep",
+          "value": "Beep"
+        },
+        {
+          "title": "Exclamation",
+          "value": "Exclamation"
+        },
+        {
+          "title": "Hand",
+          "value": "Hand"
+        },
+        {
+          "title": "Question",
+          "value": "Question"
+        },
+        {
+          "title": "None",
+          "value": "none"
+        }
+      ]
+    }
   ]
 }
