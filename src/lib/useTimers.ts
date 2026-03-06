@@ -1,9 +1,14 @@
 import { showToast, Toast } from "@raycast/api";
+import { exec } from "child_process";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Timer } from "./types";
 import { getTimers, setTimers } from "./storage";
 
 const UPDATE_INTERVAL = 1000; // 1 second for countdown display
+
+function playTimerSound() {
+  exec('powershell -c "[System.Media.SystemSounds]::Asterisk.Play()"');
+}
 
 interface UseTimersReturn {
   /** All timers (active + completed) */
@@ -93,6 +98,7 @@ export function useTimers(): UseTimersReturn {
           if (changed) {
             setTimers(updated); // fire-and-forget persist
             for (const name of justCompleted) {
+              playTimerSound();
               showToast({
                 style: Toast.Style.Success,
                 title: "Timer Finished",
