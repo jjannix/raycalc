@@ -51,12 +51,7 @@ export default function StopwatchCommand() {
                 <Action title="Pause" icon={Icon.Pause} onAction={pause} />
               )}
               {isRunning && (
-                <Action
-                  title="Lap"
-                  icon={Icon.Plus}
-                  shortcut={{ modifiers: ["cmd"], key: "l" }}
-                  onAction={lap}
-                />
+                <Action title="Lap" icon={Icon.Plus} onAction={lap} />
               )}
               {hasStarted && (
                 <Action
