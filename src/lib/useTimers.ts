@@ -6,12 +6,24 @@ import { getTimers, setTimers } from "./storage";
 
 const UPDATE_INTERVAL = 1000; // 1 second for countdown display
 
+const SOUND_PATTERNS: Record<string, string> = {
+  triple:
+    "[Console]::Beep(800,200); [Console]::Beep(800,200); [Console]::Beep(800,200)",
+  ascending:
+    "[Console]::Beep(400,200); [Console]::Beep(600,200); [Console]::Beep(800,300)",
+  descending:
+    "[Console]::Beep(800,200); [Console]::Beep(600,200); [Console]::Beep(400,300)",
+  high: "[Console]::Beep(1200,400)",
+  low: "[Console]::Beep(300,600)",
+  alert:
+    "[Console]::Beep(900,150); [Console]::Beep(0,100); [Console]::Beep(900,150); [Console]::Beep(0,100); [Console]::Beep(900,150)",
+};
+
 function playTimerSound() {
   const { timerSound } = getPreferenceValues<{ timerSound: string }>();
   if (timerSound === "none") return;
-  exec(
-    `powershell -c "(New-Object Media.SoundPlayer 'C:\\Windows\\Media\\${timerSound}').PlaySync()"`,
-  );
+  const pattern = SOUND_PATTERNS[timerSound];
+  if (pattern) exec(`powershell -c "${pattern}"`);
 }
 
 interface UseTimersReturn {
