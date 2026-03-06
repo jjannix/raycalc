@@ -9,7 +9,9 @@ const UPDATE_INTERVAL = 1000; // 1 second for countdown display
 function playTimerSound() {
   const { timerSound } = getPreferenceValues<{ timerSound: string }>();
   if (timerSound === "none") return;
-  exec(`powershell -c "[System.Media.SystemSounds]::${timerSound}.Play()"`);
+  exec(
+    `powershell -c "(New-Object Media.SoundPlayer 'C:\\Windows\\Media\\${timerSound}').PlaySync()"`,
+  );
 }
 
 interface UseTimersReturn {

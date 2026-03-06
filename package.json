@@ -67,27 +67,59 @@
       "description": "Sound to play when a timer finishes",
       "type": "dropdown",
       "required": false,
-      "default": "Asterisk",
+      "default": "Alarm01.wav",
       "data": [
         {
-          "title": "Asterisk",
-          "value": "Asterisk"
+          "title": "Alarm 1",
+          "value": "Alarm01.wav"
         },
         {
-          "title": "Beep",
-          "value": "Beep"
+          "title": "Alarm 2",
+          "value": "Alarm02.wav"
         },
         {
-          "title": "Exclamation",
-          "value": "Exclamation"
+          "title": "Alarm 3",
+          "value": "Alarm03.wav"
         },
         {
-          "title": "Hand",
-          "value": "Hand"
+          "title": "Alarm 5",
+          "value": "Alarm05.wav"
         },
         {
-          "title": "Question",
-          "value": "Question"
+          "title": "Alarm 10",
+          "value": "Alarm10.wav"
+        },
+        {
+          "title": "Ring 1",
+          "value": "Ring01.wav"
+        },
+        {
+          "title": "Ring 5",
+          "value": "Ring05.wav"
+        },
+        {
+          "title": "Ring 10",
+          "value": "Ring10.wav"
+        },
+        {
+          "title": "Chimes",
+          "value": "chimes.wav"
+        },
+        {
+          "title": "Chord",
+          "value": "chord.wav"
+        },
+        {
+          "title": "Ding",
+          "value": "ding.wav"
+        },
+        {
+          "title": "Notify",
+          "value": "notify.wav"
+        },
+        {
+          "title": "Tada",
+          "value": "tada.wav"
         },
         {
           "title": "None",
