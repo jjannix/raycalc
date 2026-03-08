@@ -214,7 +214,10 @@ export default function WorldClockCommand() {
                   <Action
                     title="Move up"
                     icon={Icon.ArrowUp}
-                    shortcut={{ modifiers: ["cmd", "opt"], key: "arrowUp" }}
+                    shortcut={{
+                      Windows: { modifiers: ["ctrl", "alt"], key: "arrowUp" },
+                      macOS: { modifiers: ["cmd", "opt"], key: "arrowUp" },
+                    }}
                     onAction={() => handleMoveUp(index)}
                   />
                 )}
@@ -222,7 +225,10 @@ export default function WorldClockCommand() {
                   <Action
                     title="Move Down"
                     icon={Icon.ArrowDown}
-                    shortcut={{ modifiers: ["cmd", "opt"], key: "arrowDown" }}
+                    shortcut={{
+                      Windows: { modifiers: ["ctrl", "alt"], key: "arrowDown" },
+                      macOS: { modifiers: ["cmd", "opt"], key: "arrowDown" },
+                    }}
                     onAction={() => handleMoveDown(index)}
                   />
                 )}
@@ -230,7 +236,10 @@ export default function WorldClockCommand() {
                   title="Remove Timezone"
                   icon={Icon.Trash}
                   style={Action.Style.Destructive}
-                  shortcut={{ modifiers: ["cmd"], key: "d" }}
+                  shortcut={{
+                    Windows: { modifiers: ["ctrl"], key: "d" },
+                    macOS: { modifiers: ["cmd"], key: "d" },
+                  }}
                   onAction={() => handleRemove(index)}
                 />
               </ActionPanel>

@@ -76,7 +76,10 @@ export default function ManageTimersCommand() {
                       title="Delete"
                       icon={Icon.Trash}
                       style={Action.Style.Destructive}
-                      shortcut={{ modifiers: ["cmd"], key: "d" }}
+                      shortcut={{
+                        Windows: { modifiers: ["ctrl"], key: "d" },
+                        macOS: { modifiers: ["cmd"], key: "d" },
+                      }}
                       onAction={() => deleteTimer(timer.id)}
                     />
                   </ActionPanel>
@@ -107,14 +110,20 @@ export default function ManageTimersCommand() {
                     title="Delete"
                     icon={Icon.Trash}
                     style={Action.Style.Destructive}
-                    shortcut={{ modifiers: ["cmd"], key: "d" }}
+                    shortcut={{
+                      Windows: { modifiers: ["ctrl"], key: "d" },
+                      macOS: { modifiers: ["cmd"], key: "d" },
+                    }}
                     onAction={() => deleteTimer(timer.id)}
                   />
                   <Action
                     title="Clear All Completed"
                     icon={Icon.XMarkCircle}
                     style={Action.Style.Destructive}
-                    shortcut={{ modifiers: ["cmd", "shift"], key: "d" }}
+                    shortcut={{
+                      Windows: { modifiers: ["ctrl", "shift"], key: "d" },
+                      macOS: { modifiers: ["cmd", "shift"], key: "d" },
+                    }}
                     onAction={clearCompleted}
                   />
                 </ActionPanel>

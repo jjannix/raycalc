@@ -58,7 +58,10 @@ export default function StopwatchCommand() {
                   title="Reset"
                   icon={Icon.ArrowCounterClockwise}
                   style={Action.Style.Destructive}
-                  shortcut={{ modifiers: ["cmd"], key: "r" }}
+                  shortcut={{
+                    Windows: { modifiers: ["ctrl"], key: "r" },
+                    macOS: { modifiers: ["cmd"], key: "r" },
+                  }}
                   onAction={reset}
                 />
               )}
