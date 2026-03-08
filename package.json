@@ -29,6 +29,12 @@
       "title": "World Clock",
       "description": "View current time across multiple time zones",
       "mode": "view"
+    },
+    {
+      "name": "pomodoro",
+      "title": "Pomodoro Timer",
+      "description": "25-minute work sessions with breaks",
+      "mode": "view"
     }
   ],
   "dependencies": {
