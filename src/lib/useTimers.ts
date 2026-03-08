@@ -1,9 +1,15 @@
-import { showToast, Toast } from "@raycast/api";
+import { getPreferenceValues, showToast, Toast } from "@raycast/api";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Timer } from "./types";
+import { playSound } from "./sounds";
 import { getTimers, setTimers } from "./storage";
 
 const UPDATE_INTERVAL = 1000; // 1 second for countdown display
+
+function playTimerSound() {
+  const { timerSound } = getPreferenceValues<{ timerSound: string }>();
+  playSound(timerSound);
+}
 
 interface UseTimersReturn {
   /** All timers (active + completed) */
@@ -93,6 +99,7 @@ export function useTimers(): UseTimersReturn {
           if (changed) {
             setTimers(updated); // fire-and-forget persist
             for (const name of justCompleted) {
+              playTimerSound();
               showToast({
                 style: Toast.Style.Success,
                 title: "Timer Finished",

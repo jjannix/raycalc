@@ -29,6 +29,12 @@
       "title": "World Clock",
       "description": "View current time across multiple time zones",
       "mode": "view"
+    },
+    {
+      "name": "pomodoro",
+      "title": "Pomodoro Timer",
+      "description": "25-minute work sessions with breaks",
+      "mode": "view"
     }
   ],
   "dependencies": {
@@ -59,5 +65,45 @@
   "categories": [
     "Productivity",
     "System"
+  ],
+  "preferences": [
+    {
+      "name": "timerSound",
+      "title": "Timer Sound",
+      "description": "Sound to play when a timer finishes",
+      "type": "dropdown",
+      "required": false,
+      "default": "chime",
+      "data": [
+        {
+          "title": "Chime",
+          "value": "chime"
+        },
+        {
+          "title": "Gentle",
+          "value": "gentle"
+        },
+        {
+          "title": "Melody",
+          "value": "melody"
+        },
+        {
+          "title": "Bell",
+          "value": "bell"
+        },
+        {
+          "title": "Celebration",
+          "value": "celebration"
+        },
+        {
+          "title": "Pulse",
+          "value": "pulse"
+        },
+        {
+          "title": "None",
+          "value": "none"
+        }
+      ]
+    }
   ]
 }

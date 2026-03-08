@@ -58,3 +58,24 @@ export interface WorldClockZone {
   /** IANA timezone identifier, e.g. "America/New_York" */
   timezone: string;
 }
+
+// ── Pomodoro ─────────────────────────────────────────────────
+
+export type PomodoroSessionType = "work" | "shortBreak" | "longBreak";
+
+export interface PomodoroState {
+  /** Current session type */
+  sessionType: PomodoroSessionType;
+  /** Number of completed work sessions in current cycle */
+  completedPomodoros: number;
+  /** Unix timestamp (ms) when the current session was started */
+  startedAt: number | null;
+  /** Accumulated elapsed time (ms) from segments before the latest resume */
+  pausedElapsed: number;
+  /** Whether the timer is currently counting down */
+  isRunning: boolean;
+  /** Original duration of current session in ms (set on session start) */
+  currentSessionDurationMs: number;
+  /** Unix timestamp (ms) when the last session change happened (for tracking) */
+  lastSessionChange: number;
+}

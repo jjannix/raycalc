@@ -4,6 +4,7 @@ import type {
   Timer,
   RecentDuration,
   WorldClockZone,
+  PomodoroState,
 } from "./types";
 
 // ── Storage Keys ─────────────────────────────────────────────
@@ -13,6 +14,7 @@ const KEYS = {
   TIMERS: "timers",
   RECENT_DURATIONS: "recent-durations",
   WORLD_CLOCK_ZONES: "world-clock-zones",
+  POMODORO: "pomodoro-state",
 } as const;
 
 // ── Generic helpers ──────────────────────────────────────────
@@ -106,4 +108,51 @@ export async function setWorldClockZones(
   zones: WorldClockZone[],
 ): Promise<void> {
   await setJSON(KEYS.WORLD_CLOCK_ZONES, zones);
+}
+
+// ── Pomodoro ─────────────────────────────────────────────────
+
+// Default Pomodoro durations (in milliseconds)
+export const POMODORO_DURATIONS = {
+  work: 25 * 60 * 1000, // 25 minutes
+  shortBreak: 5 * 60 * 1000, // 5 minutes
+  longBreak: 15 * 60 * 1000, // 15 minutes
+} as const;
+
+// Number of work sessions before a long break
+export const POMODOROS_BEFORE_LONG_BREAK = 4;
+
+const DEFAULT_POMODORO: PomodoroState = {
+  sessionType: "work",
+  completedPomodoros: 0,
+  startedAt: null,
+  pausedElapsed: 0,
+  isRunning: false,
+  currentSessionDurationMs: POMODORO_DURATIONS.work,
+  lastSessionChange: Date.now(),
+};
+
+export async function getPomodoro(): Promise<PomodoroState> {
+  const stored = await getJSON<PomodoroState>(KEYS.POMODORO);
+  if (!stored) {
+    return { ...DEFAULT_POMODORO };
+  }
+  // Merge with defaults to handle any future field additions
+  return {
+    sessionType: stored.sessionType ?? DEFAULT_POMODORO.sessionType,
+    completedPomodoros:
+      stored.completedPomodoros ?? DEFAULT_POMODORO.completedPomodoros,
+    startedAt: stored.startedAt ?? DEFAULT_POMODORO.startedAt,
+    pausedElapsed: stored.pausedElapsed ?? DEFAULT_POMODORO.pausedElapsed,
+    isRunning: stored.isRunning ?? DEFAULT_POMODORO.isRunning,
+    currentSessionDurationMs:
+      stored.currentSessionDurationMs ??
+      DEFAULT_POMODORO.currentSessionDurationMs,
+    lastSessionChange:
+      stored.lastSessionChange ?? DEFAULT_POMODORO.lastSessionChange,
+  };
+}
+
+export async function setPomodoro(state: PomodoroState): Promise<void> {
+  await setJSON(KEYS.POMODORO, state);
 }
